@@ -114,7 +114,7 @@ let memes = [
   "you know i had to do it to em"
 ];
 
-app.get("/memes",  async(c) => {
+app.get("/memes",authMiddleware ,async(c) => {
  const RandomIdx=Math.floor(Math.random()*memes.length)
  const meme=memes[RandomIdx]
  return c.json({meme})
