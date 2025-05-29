@@ -3,7 +3,7 @@ import { Hono, Context, Next } from 'hono'
 
 const app = new Hono()
 
-// Basic auth middleware - for demonstration purposes only
+// auth middleware 
 function authMiddleware(c: Context, next: Next) {
   const authHeader = c.req.header("Authorization")
   if(!authHeader) {
@@ -12,7 +12,6 @@ function authMiddleware(c: Context, next: Next) {
   return next()
 }
 
-// Routes
 app.get('/', authMiddleware, async (c) => {
   const authHeader = c.req.header("Authorization")
   const param = c.req.query("param")
