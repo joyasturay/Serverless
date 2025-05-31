@@ -1,9 +1,13 @@
 /// <reference lib="dom" />
 import { Hono, Context, Next } from 'hono'
+import { cors } from 'hono/cors' // Import the CORS middleware
 
 const app = new Hono()
 
-// auth middleware 
+// Add CORS middleware to allow requests from any origin
+app.use('/*', cors())
+
+// Basic auth middleware - for demonstration purposes only
 function authMiddleware(c: Context, next: Next) {
   const authHeader = c.req.header("Authorization")
   if(!authHeader) {
@@ -12,6 +16,7 @@ function authMiddleware(c: Context, next: Next) {
   return next()
 }
 
+// Routes
 app.get('/', authMiddleware, async (c) => {
   const authHeader = c.req.header("Authorization")
   const param = c.req.query("param")
@@ -114,10 +119,15 @@ let memes = [
   "you know i had to do it to em"
 ];
 
-app.get("/memes",authMiddleware ,async(c) => {
+app.get("/memes",async(c) => {
  const RandomIdx=Math.floor(Math.random()*memes.length)
  const meme=memes[RandomIdx]
  return c.json({meme})
+ })
+
+ app.get("/random",async(c)=>{
+  const num=Math.floor(Math.random()*100)+1;
+  return c.json(num%2===0?"even":"odd")
  })
 
 export default app
