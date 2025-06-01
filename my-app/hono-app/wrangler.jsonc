@@ -2,7 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "hono-app",
   "main": "src/index.ts",
-  "compatibility_date": "2025-05-27"
+  "compatibility_date": "2025-05-27",
+  "vars": {
+    "API_KEY": "v2NUBkSHccVnApATjr4eqyMJ0kymZzZLv3EPaW6K" // Replace with your actual key
+  }
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
@@ -34,5 +37,6 @@
   // "observability": {
   //   "enabled": true,
   //   "head_sampling_rate": 1
-  // }
+  // },
+  
 }

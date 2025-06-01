@@ -1,6 +1,8 @@
 # prod
 dist/
-
+# config files with sensitive data
+wrangler.toml
+.dev.vars
 # dev
 .yarn/
 !.yarn/releases
