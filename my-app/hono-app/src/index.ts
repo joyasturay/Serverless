@@ -206,6 +206,28 @@ app.get("/apod", async (c) => {
 
   return response; 
 });
-
+ app.get("/bsearch",async(c)=>{
+  const arr=[1,3,5,7,9,10]
+  const target=5
+  let start=0
+  let end=arr.length-1
+  while(start<=end){
+    let mid=Math.floor((start + end) / 2);
+    if(arr[mid]===target){
+      return c.json({
+       array:arr,
+       target:target,
+       index:mid,
+       result:"found"
+      })
+    }
+    else if(arr[mid]<target){
+      start=mid+1;
+    }else{
+      end=mid-1;
+    }
+  }
+  return c.json(-1)
+ })
 
 export default app
